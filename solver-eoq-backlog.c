@@ -71,10 +71,10 @@ double EquacaoPolinomio(Parametros p, double q)
 int Tabelamento(int *a, int *b, int passo, Parametros p)
 {
 
-    int q = a;
+    int q = *a;
     int q_prox = q + passo;
 
-    while (q < b)
+    while (q < *b)
     {
         double fx = EquacaoPolinomio(p, q);
         double fx_prox = EquacaoPolinomio(p, q_prox);
@@ -98,6 +98,12 @@ double EquacaoCustoTotal(Parametros p, double q, double b)
 {
     return (((p.d / q) * p.s) + (pow((q - b), 2) / 2 * q) * p.h + (pow(b, 2) / 2 * q) * p.pi);
 }
+
+double EstoqueMaximo(double q, double b)
+{
+    return q - b;
+}
+
 int main(int argc, char const *argv[])
 {
     if (argc != 5)
