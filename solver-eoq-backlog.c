@@ -145,7 +145,10 @@ int main(int argc, char const *argv[])
     double a = 0, b = 0;
  
     if(!Tabelamento(&a, &b, 1, p))
+    {
+        printf("Nao foi possivel encontrar um intervalo de isolamento, programa encerrando");
         return 0;
+    }
 
     double q = MetodoDaBisseccao(p, a, b, 0.0000001, 500);
     double b_faltas = EquacaoB_Isolado(p,q);
