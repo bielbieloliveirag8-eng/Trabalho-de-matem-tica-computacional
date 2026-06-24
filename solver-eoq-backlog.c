@@ -57,11 +57,17 @@ int main(int argc, char const *argv[])
  
     if(!Tabelamento(&a, &b, 1, p))
     {
-        printf("Nao foi possivel encontrar um intervalo de isolamento, programa encerrando");
+        printf("Nao foi possivel encontrar um intervalo de isolamento, programa encerrando!\n");
         return 0;
     }
 
     double q = MetodoDaBisseccao(p, a, b, 0.0000001, 500);
+
+    if (q < 0)
+    {
+        printf("Não existe raiz no intervalo!\n");
+    }
+    
     double b_faltas = EquacaoB_Isolado(p,q);
     double custo_total = EquacaoCustoTotal(p, q, b_faltas);
     double estoque_max = EstoqueMaximo(q, b_faltas);
@@ -102,9 +108,7 @@ double MetodoDaBisseccao(Parametros p, double a, double b, double epsilon, int m
 
     if (EquacaoDerivadaParcial(p, a) * EquacaoDerivadaParcial(p, b) > 0)
     {
-        printf("\n  A Funcao nao muda de sinal nos extremos do intervalo");
-
-        return 0;
+        return -1;
     }
 
     double x;
